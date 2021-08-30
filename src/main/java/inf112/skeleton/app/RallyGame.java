@@ -42,6 +42,7 @@ import java.util.concurrent.Semaphore;
 @SuppressWarnings("ALL")
 public class RallyGame extends Game {
 
+    public RallyGame game;
     public Board board;
     public Deck deck;
     public Screen lastScreen;
@@ -108,6 +109,7 @@ public class RallyGame extends Game {
         this.converter = new Converter();
         this.waitingForCards = true;
         this.waitingForPowerUp = false;
+        this.game = this;
 
         this.walledLaserSound = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/LaserShot.mp3"));
         this.robotLaserSound = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/laser.mp3"));
@@ -117,8 +119,20 @@ public class RallyGame extends Game {
         this.hitByLaser = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/LaserHit.mp3"));
         this.robotDestroyed = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/Destroyed.mp3"));
 
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                doTurn();
+                Gdx.app.postRunnable(new Runnable() {
+                    @Override
+                    public void run() {
+                        setScreen(new GifScreen(game));
+                    }
+                });
+            }
+        }).start();
 
-        new Thread(this::doTurn).start();
+        // new Thread(this::doTurn).start();
 
         dealCards();
     }
@@ -391,16 +405,16 @@ public class RallyGame extends Game {
      3. Announce intent to power down or continue running
      NEXT turn.
      4. Complete each register in order:
-     A. Reveal Program Cards
-     B. Robots Move
-            C. board Elements Move (Gears, Express belt, normal belt)
-                1. Express conveyor belts move 1 space in the direction of the arrows.
-                2. Express conveyor belts and normal conveyor belts move 1 space in the
-                   direction of the arrows.
-                3. Pushers push if active.
-                4. Gears rotate 90° in the direction of the arrows.
-            D. Lasers Fire (player, then board)
-            E. Touch Checkpoints (Flag, Repair)
+        A. Reveal Program Cards
+        B. Robots Move
+        C. Board Elements Move (Gears, Express belt, Normal belt)
+            1. Express conveyor belts move 1 space in the direction of the arrows.
+            2. Express conveyor belts and normal conveyor belts move 1 space in the
+               direction of the arrows.
+            3. Pushers push if active.
+            4. Gears rotate 90° in the direction of the arrows.
+        D. Lasers Fire (player, then board)
+        E. Touch Checkpoints (Flag, Repair)
     5. Clean up any end-of-turn effects
     */
     public void doTurn () {
@@ -416,7 +430,7 @@ public class RallyGame extends Game {
                 fireAllLasers();
                 updateBackupAndPickUpFlagsAndRepair(false);
                 if (someoneWon()) {
-                    endGame();
+                    this.playing = false;
                     return;
                 }
                 sleep(1000);

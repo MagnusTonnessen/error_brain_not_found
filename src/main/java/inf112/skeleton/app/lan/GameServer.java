@@ -99,10 +99,12 @@ public class GameServer {
                     System.out.println("Closed connection.");
                 }
             }
+            /*
             if (connectedClients == 0) {
                 System.out.println("Stopping host");
                 return;
             }
+            */
             int numberOfPlayers = getNumberOfConnectedClients() + 1;
             game.setNumberOfPlayers(numberOfPlayers);
             System.out.println("Connected! :D");
@@ -290,7 +292,7 @@ public class GameServer {
      * @return true if all clients have selected cards
      */
     public boolean allClientsHaveSelectedCardsOrIsPoweredDown() {
-        return allClientsHaveSelectedCardsOrIsPoweredDown;
+        return allClientsHaveSelectedCardsOrIsPoweredDown || clients.isEmpty();
     }
 
     public void setServerHasConfirmed(boolean serverHasConfirmed) {

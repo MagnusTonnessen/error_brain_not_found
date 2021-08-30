@@ -120,7 +120,7 @@ public class MenuScreenActors {
 
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                return game.getServer().getNumberOfConnectedClients() > 0;
+                return true; // game.getServer().getNumberOfConnectedClients() > 0;
             }
         });
         startButton.setVisible(false);
