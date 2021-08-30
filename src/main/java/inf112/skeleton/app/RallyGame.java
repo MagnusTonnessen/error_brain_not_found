@@ -23,6 +23,7 @@ import inf112.skeleton.app.objects.RotatePad;
 import inf112.skeleton.app.objects.player.Player;
 import inf112.skeleton.app.objects.player.PlayerSorter;
 import inf112.skeleton.app.screens.ActorImages;
+import inf112.skeleton.app.screens.LoadingScreen;
 import inf112.skeleton.app.screens.gamescreen.GameScreen;
 import inf112.skeleton.app.screens.gifscreen.GifScreen;
 import inf112.skeleton.app.screens.menuscreen.MenuScreen;
@@ -85,7 +86,7 @@ public class RallyGame extends Game {
         this.actorImages = new ActorImages();
         this.textSkin = new Skin(Gdx.files.internal("assets/skins/number-cruncher-ui.json"));
         this.defaultSkin = new Skin(Gdx.files.internal("assets/skins/uiskin.json"));
-        this.setScreen(new MenuScreen(this));
+        this.setScreen(new LoadingScreen(this));
         startMusic();
     }
 
