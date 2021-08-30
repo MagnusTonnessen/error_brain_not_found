@@ -333,10 +333,12 @@ public abstract class BoardLayers {
 
     // GET MAP LAYERS
 
-   // @Override
-    //public ArrayList<Vector2> getRepairTiles() {
-      //  return super.getRepairTiles();
-    //}
+    /*
+    @Override
+    public ArrayList<Vector2> getRepairTiles() {
+        return super.getRepairTiles();
+    }
+    */
 
     public TiledMap getTiledMap() {
         return tiledMap;

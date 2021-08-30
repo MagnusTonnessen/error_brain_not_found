@@ -43,16 +43,16 @@ public class GameServer {
     /**
      * Set the socket for incoming connections.
      *
-     * @param serverSocket
+     * @param serverSocket socket for server
      */
     public void setServerSocket(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
 
     /**
-     * Create a serversocket using given portnumber
+     * Create a server socket using given port number
      *
-     * @param portNumber
+     * @param portNumber port number for server socket
      */
     public void createServerSocket(int portNumber) {
         try {
@@ -175,7 +175,7 @@ public class GameServer {
 
     /**
      * Send a message to all connecting clients.
-     * @param message
+     * @param message to send
      */
     public void sendToAll(String message) {
         for (GameServerThreads thread : clients) {
@@ -198,7 +198,7 @@ public class GameServer {
 
     /**
      * Disconnect this player from the server and close socket.
-     * @param playerNumber
+     * @param playerNumber to disconnect
      */
     public void disconnect(int playerNumber) {
         for (GameServerThreads thread : clients) {
@@ -258,10 +258,10 @@ public class GameServer {
      */
     public void sendDeck(GameServerThreads client, Deck deck) {
         Stack<ProgramCard> stack = deck.getDeck();
-        Iterator iter = stack.iterator();
+        Iterator<ProgramCard> iter = stack.iterator();
         client.sendMessage(Messages.DECK_BEGIN.toString());
         while (iter.hasNext()) {
-            ProgramCard card = (ProgramCard) iter.next();
+            ProgramCard card = iter.next();
             client.sendMessage(converter.convertToString(card));
         }
         client.sendMessage(Messages.DECK_END.toString());
@@ -319,7 +319,7 @@ public class GameServer {
 
     /**
      * Stop while loop
-     * @param connectingToClients
+     * @param connectingToClients value to update variable with
      */
     public void setConnectingToClients(boolean connectingToClients) {
         this.connectingToClients = connectingToClients;
@@ -353,7 +353,7 @@ public class GameServer {
     /***
      * Make the socket wait before listening for new client.
      *
-     * @param milliseconds
+     * @param milliseconds to wait before listening
      */
     public void setWaitBetweenEachConnection(int milliseconds) {
         this.waitForNextConnectionMilliSeconds = milliseconds;
@@ -361,7 +361,7 @@ public class GameServer {
 
     /**
      * Wait given milliseconds before accepting new connection.
-     * @param milliseconds
+     * @param milliseconds to wait for new connection
      */
     public void waitForNextConnection(int milliseconds) {
         try {
@@ -372,9 +372,9 @@ public class GameServer {
     }
 
     /**
-     * When server has pressed start, mappath should be set.
-     * Set mappath in game.
-     * @param mapPath
+     * When server has pressed start, map path should be set.
+     * Set map path in game.
+     * @param mapPath path of current map
      */
     public void setMapPath(String mapPath) {
         this.mapPath = mapPath;

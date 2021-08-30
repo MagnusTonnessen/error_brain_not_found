@@ -17,18 +17,15 @@ public class Board extends BoardLayers {
 
     private final ArrayList<Player> players;
 
-    private final Sound scream;
     private final Sound wall_Collision;
-    private final Sound robotCollide;
-
 
 
     public Board(String mapPath) {
         super(mapPath);
 
         this.players = new ArrayList<>();
-        this.scream = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/WilhelmScream.mp3"));
-        this.robotCollide = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/robotCollide.mp3"));
+        Sound scream = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/WilhelmScream.mp3"));
+        Sound robotCollide = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/robotCollide.mp3"));
         this.wall_Collision = Gdx.audio.newSound(Gdx.files.internal("assets/Sound/robotCollide.mp3"));
     }
 

@@ -65,10 +65,10 @@ public class Registers {
     public boolean contains(ProgramCard card) {
         for (Register register : registers) {
             if (register.hasCard() && register.getProgramCard().equals(card)) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
     public boolean hasRegistersWithoutCard() {

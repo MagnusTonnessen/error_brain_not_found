@@ -13,10 +13,10 @@ import java.util.ArrayList;
 public class Converter {
 
     /**
-     * Give players playernumber and programcard, return info as a string.
-     * @param playerNumber
-     * @param programCard
-     * @return playernumber and info about players card in string
+     * Give players player number and program card, return info as a string.
+     * @param playerNumber number of player
+     * @param programCard program card to convert
+     * @return player number and info about players card in string
      */
     public String convertToString(int playerNumber, ProgramCard programCard) {
         if (programCard == null) {
@@ -29,18 +29,18 @@ public class Converter {
         String steps = String.valueOf(programCard.getDistance());
         String rotation = String.valueOf(programCard.getRotate());
         String name = programCard.getName();
-        string.append(player + " ");
-        string.append(prio + " ");
-        string.append(steps + " ");
-        string.append(rotation+ " ");
+        string.append(player).append(" ");
+        string.append(prio).append(" ");
+        string.append(steps).append(" ");
+        string.append(rotation).append(" ");
         string.append(name);
         return string.toString();
     }
 
     /**
      *
-     * @param programCard
-     * @return programcard as a string
+     * @param programCard program card to convert
+     * @return program card as a string
      */
     public String convertToString(ProgramCard programCard) {
         StringBuilder string = new StringBuilder();
@@ -48,18 +48,18 @@ public class Converter {
         String steps = String.valueOf(programCard.getDistance());
         String rotation = String.valueOf(programCard.getRotate());
         String name = programCard.getName();
-        string.append(prio + " ");
-        string.append(steps + " ");
-        string.append(rotation+ " ");
+        string.append(prio).append(" ");
+        string.append(steps).append(" ");
+        string.append(rotation).append(" ");
         string.append(name);
         return string.toString();
     }
 
     /**
-     * Convert a string to a corresponding programcard.
-     * @param string
-     * @return programcard
-     * @throws NotProgramCardException
+     * Convert a string to a corresponding program card.
+     * @param string program card received from client
+     * @return program card
+     * @throws NotProgramCardException if string is not a program card
      */
     public ProgramCard convertToCard(String string) throws NotProgramCardException {
         ArrayList<String> strings = splitBySpace(string);
@@ -68,19 +68,20 @@ public class Converter {
             int steps = Integer.parseInt(strings.get(1));
             Rotate rotation = getRotation(string);
             String name = getName(string);
-            if (!string.equals(prio + " " + steps + " " + rotation.toString() + " " + name)) {
-                throw new NotProgramCardException("This is not a programcard: " +string);
+            assert rotation != null;
+            if (!string.equals(prio + " " + steps + " " + rotation + " " + name)) {
+                throw new NotProgramCardException("This is not a program card: " +string);
             }
             return new ProgramCard(prio, steps, rotation, name);
         } catch (NumberFormatException error) {
-            throw new NotProgramCardException("This is not a programcard: "+string);
+            throw new NotProgramCardException("This is not a program card: "+string);
         }
     }
 
     /**
      * Put words separated by spaces in a list.
      * So "This is an example" becomes ["This", "is", "an", "example"].
-     * @param string
+     * @param string to split
      * @return ArrayList<String> List of string with index at spaces.
      */
     public ArrayList<String> splitBySpace(String string) {
@@ -103,8 +104,8 @@ public class Converter {
 
     /**
      *
-     * @param string
-     * @return name of programcard
+     * @param string to get name from
+     * @return name of program card
      */
     private String getName(String string) {
         if (string.contains("U-turn")) {
@@ -133,7 +134,7 @@ public class Converter {
 
     /**
      * Get the rotation
-     * @param message
+     * @param message to interpret
      * @return rotation
      */
     private Rotate getRotation(String message) {
@@ -154,7 +155,7 @@ public class Converter {
 
     /**
      *
-     * @param message
+     * @param message to interpret
      * @return true if message is attached to a player
      */
     public boolean isMessageFromAnotherPlayer(String message) {
@@ -165,7 +166,7 @@ public class Converter {
      * Playernumber is always first in the message. Get the playernumber from this
      * message. {@link #isMessageFromAnotherPlayer(String)} needs to be true.
      *
-     * @param message
+     * @param message to interpret
      * @return the playerNumber for the player sending this message. Return -1 if the message is not attached to a
      * player.
      */
@@ -178,7 +179,7 @@ public class Converter {
 
     /**
      *
-     * @param message
+     * @param message to interpret
      * @return the message that a player sent you. {@link #isMessageFromAnotherPlayer(String)} needs to be true.
      */
     public String getMessageFromPlayer(String message) {
@@ -190,8 +191,8 @@ public class Converter {
 
     /**
      *
-     * @param playerNumber
-     * @param message
+     * @param playerNumber player which sends message
+     * @param message content of message
      * @return message with player attached
      */
     public String createMessageFromPlayer(int playerNumber, Messages message) {
@@ -199,7 +200,7 @@ public class Converter {
     }
 
     public String createQuitMessage(int myPlayerNumber) {
-        return (myPlayerNumber + " " + Messages.QUIT.toString());
+        return (myPlayerNumber + " " + Messages.QUIT);
     }
 
     public String getMapPath(String message) {
@@ -207,7 +208,7 @@ public class Converter {
     }
 
     public String createMapPathMessage(String mapPath) {
-        return Messages.HERE_IS_MAP.toString()+mapPath;
+        return Messages.HERE_IS_MAP +mapPath;
     }
 
     public String createNumberOfPlayersMessage(int numberOfPlayers) {

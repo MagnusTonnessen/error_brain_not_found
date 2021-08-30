@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.Stack;
 import java.util.concurrent.Semaphore;
 
+@SuppressWarnings("ALL")
 public class RallyGame extends Game {
 
     public Board board;
@@ -408,7 +409,7 @@ public class RallyGame extends Game {
             waitForCards();
             if (Thread.interrupted()) { return; }
             for (int cardNumber = 0; cardNumber < 5; cardNumber++) {
-                System.out.println("Runde " + (cardNumber + 1));
+                System.out.println("Round " + (cardNumber + 1));
                 allPlayersPlayCard(cardNumber);
                 activateBeltsAndRotatePads();
                 fireAllLasers();
@@ -706,7 +707,7 @@ public class RallyGame extends Game {
 
     /**
      * All players move their card. doTurn thread sleeps at the end and between moves.
-     * @param cardNumber
+     * @param cardNumber index of current card
      */
     public void allPlayersPlayCard(int cardNumber) {
         ArrayList<Player> playerOrder = new ArrayList<>(players);
@@ -728,7 +729,7 @@ public class RallyGame extends Game {
     public void playCard(Player player, int cardNumber) {
         player.setBeltPushDir(null);
         ProgramCard card = player.getRegisters().getCard(cardNumber);
-        System.out.println(player.toString() + " played " + card.toString());
+        System.out.println(player + " played " + card.toString());
         switch (card.getRotate()) {
             case RIGHT:
                 player.setDirection(player.getDirection().turnRight());
@@ -1001,7 +1002,7 @@ public class RallyGame extends Game {
             if (isServer) {
                 this.serverThread.getServer().sendToAll(Messages.HOST_LEAVES.toString());
                 this.serverThread.getServer().disconnectAll();
-                System.out.println(Messages.CLOSED.toString());
+                System.out.println(Messages.CLOSED);
             }
         } catch (Exception ignored) {
         }
@@ -1076,7 +1077,7 @@ public class RallyGame extends Game {
 
     public boolean serverIsOnlyOneInPowerDown() {
         for (Player player : players) {
-            if (player.getPlayerNumber() != 1 && player.isPoweredDown() && !player.hasConfirmedPowerUpOrContinuePowerDown()) {
+            if (player.getPlayerNumber() != 1 && player.isPoweredDown() && player.hasConfirmedPowerUpOrContinuePowerDown()) {
                 return false;
             }
         }

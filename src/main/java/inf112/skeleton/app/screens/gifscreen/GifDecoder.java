@@ -152,7 +152,7 @@ public class GifDecoder {
                 }
             }
             if (lastPixmap != null) {
-                lastPixmap.getPixels(dest, 0, width, width, height);
+                lastPixmap.getPixels(dest, width, width, height);
                 // copy pixels
                 if (lastDispose == 2) {
                     // fill last image rect area with background color
@@ -635,11 +635,12 @@ public class GifDecoder {
             }
         }
 
-        private void getPixels(int[] pixels, int offset, int stride, int width, int height) {
+        private void getPixels(int[] pixels, int stride, int width, int height) {
             java.nio.ByteBuffer bb = getPixels();
 
             int k;
             int l;
+            int offset = 0;
 
             for (k = 0; k < height; k++) {
                 int _offset = offset;

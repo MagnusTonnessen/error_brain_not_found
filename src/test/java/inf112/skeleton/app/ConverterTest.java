@@ -19,8 +19,8 @@ public class ConverterTest {
 
     /**
      * Check if card1 and card2 are equal
-     * @param card1
-     * @param card2
+     * @param card1 first card
+     * @param card2 second card
      * @return true if cards have same prio, distance, rotate and name.
      */
     private boolean isEqualCards(ProgramCard card1, ProgramCard card2) {

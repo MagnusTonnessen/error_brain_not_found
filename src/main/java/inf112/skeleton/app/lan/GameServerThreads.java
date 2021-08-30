@@ -26,6 +26,7 @@ public class GameServerThreads extends Thread {
     private final Semaphore continueListening;
     private String sentMessage;
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public GameServerThreads(GameServer server, RallyGame game, Socket serverSideSocket, int playerNumber) {
         this.serverSideSocket = serverSideSocket;
         this.playerNumber = playerNumber;
@@ -198,8 +199,8 @@ public class GameServerThreads extends Thread {
 
     /**
      * Add a card to players program.
-     * @param player
-     * @param card
+     * @param player current player
+     * @param card played card
      */
     public void addSelectedCard(Player player, ProgramCard card) {
         player.addSelectedCard(card);
@@ -221,7 +222,7 @@ public class GameServerThreads extends Thread {
     /**
      * Send given player's selected cards to this client. Player in
      * power down do not send out their cards.
-     * @param player
+     * @param player sending cards
      */
     public void sendSelectedCards(Player player) {
         if (!player.isPoweredDown()) {
@@ -233,7 +234,7 @@ public class GameServerThreads extends Thread {
 
     /**
      * Send a message to this client.
-     * @param message
+     * @param message to be sent
      */
     public void sendMessage(String message) {
         this.sentMessage = message;
@@ -267,7 +268,7 @@ public class GameServerThreads extends Thread {
 
     public boolean allPoweredDownClientsHaveConfirmed() {
         for (Player player : game.getPoweredDownRobots()) {
-            if (player.getPlayerNumber() != 1 && !player.hasConfirmedPowerUpOrContinuePowerDown()) {
+            if (player.getPlayerNumber() != 1 && player.hasConfirmedPowerUpOrContinuePowerDown()) {
                 return false;
             }
         }

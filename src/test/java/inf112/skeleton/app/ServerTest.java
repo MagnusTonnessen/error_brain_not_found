@@ -99,7 +99,7 @@ public class ServerTest {
 
     /**
      * Wait for thread to finish
-     * @param thread
+     * @param thread to wait for
      */
     private void waitForThread(Thread thread) {
         try {

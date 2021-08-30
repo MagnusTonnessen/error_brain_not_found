@@ -77,7 +77,7 @@ public class ClientTest {
 
     /**
      * Wait for thread to finish
-     * @param thread
+     * @param thread thread to wait for
      */
     private void waitForThread(Thread thread) {
         try {

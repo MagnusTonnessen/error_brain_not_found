@@ -20,7 +20,7 @@ public class SettingsScreen extends StandardScreen {
     private Slider musicSlider;
     private Slider soundSlider;
 
-    public float volume;
+    public final float volume;
 
     public final float screenWidth;
     public final float screenHeight;

@@ -10,7 +10,7 @@ import inf112.skeleton.app.enums.Rotate;
  * </p>
  *
  * <p>
- * Since the belts can har two different {@link Rotate}, the {@link Direction} of the {@link inf112.skeleton.app.Player} should be set to the
+ * Since the belts can har two different {@link Rotate}, the {@link Direction} of the {@link inf112.skeleton.app.objects.player.Player} should be set to the
  * direction of the belt. Should also push in that direction.</p>
  */
 public class Belt {

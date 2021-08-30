@@ -27,14 +27,14 @@ public class GameScreenActors {
     public final float programCardRatio = 0.72f;
     private final float labelFontScale;
 
-    public float screenWidth;
-    public float screenHeight;
-    public float mapRightPx;
-    public float programCardWidth;
-    public float programCardHeight;
-    public float confirmButtonSize;
-    public float damageTokenSize;
-    public float lifeTokenSize;
+    public final float screenWidth;
+    public final float screenHeight;
+    public final float mapRightPx;
+    public final float programCardWidth;
+    public final float programCardHeight;
+    public final float confirmButtonSize;
+    public final float damageTokenSize;
+    public final float lifeTokenSize;
 
 
     private final ArrayList<ImageButton> programCardButtons;

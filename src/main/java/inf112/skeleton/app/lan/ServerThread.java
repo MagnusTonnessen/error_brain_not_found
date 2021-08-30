@@ -8,8 +8,8 @@ import inf112.skeleton.app.RallyGame;
  */
 public class ServerThread extends Thread {
     private GameServer server;
-    private RallyGame game;
-    private int portNumber;
+    private final RallyGame game;
+    private final int portNumber;
 
     public ServerThread(RallyGame game, int portNumber) {
         this.game = game;

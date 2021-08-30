@@ -97,7 +97,7 @@ public class Player {
      * Select cards from all cards.
      */
     public void selectCard(ProgramCard card) {
-        if (!registers.contains(card) && registers.hasRegistersWithoutCard()) {
+        if (registers.contains(card) && registers.hasRegistersWithoutCard()) {
             registers.addCard(card);
         } else {
             registers.remove(card);
@@ -143,7 +143,7 @@ public class Player {
 
     public ArrayList<ProgramCard> discardCards(Deck deck) {
         for (ProgramCard card : cardsOnHand) {
-            if (!registers.contains(card) || registers.getRegister(card).isOpen()) {
+            if (registers.contains(card) || registers.getRegister(card).isOpen()) {
                 deck.addCardToDiscardPile(card);
             }
         }
@@ -397,7 +397,7 @@ public class Player {
     }
 
     public boolean hasConfirmedPowerUpOrContinuePowerDown() {
-        return confirmedPowerUpOrContinuePowerDown;
+        return !confirmedPowerUpOrContinuePowerDown;
     }
 
     public void setConfirmedPowerUpOrContinuePowerDown(boolean confirmedPowerUpOrContinuePowerDown) {

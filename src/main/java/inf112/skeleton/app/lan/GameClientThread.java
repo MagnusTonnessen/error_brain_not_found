@@ -30,6 +30,7 @@ public class GameClientThread extends Thread {
     private boolean receivingDeck;
 
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     public GameClientThread(RallyGame game, Socket clientSideSocket) {
         this.clientSideSocket = clientSideSocket;
         this.game = game;
@@ -144,7 +145,7 @@ public class GameClientThread extends Thread {
     /**
      * Get the card from the message using {@link Converter#convertToCard(String)} and add it to Deck
      *
-     * @param message
+     * @param message to interpret
      */
     public void addReceivedCardToDeck(String message) {
         try {
@@ -240,7 +241,7 @@ public class GameClientThread extends Thread {
     public void close() {
         try {
             this.clientSideSocket.close();
-            System.out.println(Messages.CLOSED.toString());
+            System.out.println(Messages.CLOSED);
         } catch (IOException e) {
             e.printStackTrace();
         }

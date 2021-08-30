@@ -205,6 +205,7 @@ public class WallTests {
      * @param listOfWalls a list of position to the walls
      * @return a list of position for the walls, where the walls aligning the borderline is excluded
      */
+    @SuppressWarnings("unchecked")
     private ArrayList<Vector2> filterWallsOnBorder(ArrayList<Vector2> listOfWalls) {
         ArrayList<Vector2> wallsCopy = (ArrayList<Vector2>) listOfWalls.clone();
         for (Vector2 wallPosition : listOfWalls) {

@@ -95,7 +95,7 @@ public class GameTest {
 
     /**
      * Give the player ten damage tokens.
-     * @param player
+     * @param player to fill up damage tokens for
      */
     private void fillUpDamageTokens(Player player) {
         for (int takeDamage = 1; takeDamage <= 10; takeDamage++) {

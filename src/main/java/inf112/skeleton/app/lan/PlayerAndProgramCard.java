@@ -7,8 +7,8 @@ import inf112.skeleton.app.cards.ProgramCard;
  */
 public class PlayerAndProgramCard {
 
-    private int playerNumber;
-    private ProgramCard card;
+    private final int playerNumber;
+    private final ProgramCard card;
 
     public PlayerAndProgramCard(int playerNumber, ProgramCard card) {
             this.playerNumber = playerNumber;

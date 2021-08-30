@@ -19,13 +19,14 @@ import java.net.InetAddress;
 import java.util.Objects;
 import java.util.concurrent.Semaphore;
 
+@SuppressWarnings("ALL")
 public class MenuScreenActors {
 
     private final Stage stage;
     private final RallyGame game;
 
-    public float screenWidth;
-    public float screenHeight;
+    public final float screenWidth;
+    public final float screenHeight;
 
     public final float BUTTON_WIDTH;
     public final float BUTTON_HEIGHT;
@@ -33,14 +34,14 @@ public class MenuScreenActors {
     public final float EXIT_BUTTON_Y;
     public final float SETTINGS_BUTTON_Y;
 
-    public float TOP_BUTTON_Y;
-    public float BOTTOM_BUTTON_Y;
-    public float TEXT_INPUT_Y;
-    public float CENTERED_BUTTON_X;
-    public float LEFT_BUTTON_X;
-    public float RIGHT_BUTTON_X;
-    public float LABEL_Y;
-    public float FONT_SCALE;
+    public final float TOP_BUTTON_Y;
+    public final float BOTTOM_BUTTON_Y;
+    public final float TEXT_INPUT_Y;
+    public final float CENTERED_BUTTON_X;
+    public final float LEFT_BUTTON_X;
+    public final float RIGHT_BUTTON_X;
+    public final float LABEL_Y;
+    public final float FONT_SCALE;
     public final float BUTTON_X;
     public final float BUTTON_Y;
 
@@ -387,7 +388,7 @@ public class MenuScreenActors {
     }
 
     public boolean validIP(String ip) {
-        return !"".equals(ip) && ("localhost".equals(ip.toLowerCase()) || ipAddress(ip));
+        return !"".equals(ip) && ("localhost".equalsIgnoreCase(ip) || ipAddress(ip));
     }
 
     public void initializeBackButton(){
